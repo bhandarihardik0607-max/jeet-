@@ -5,10 +5,11 @@ FROM node:18-alpine
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the container
+# This step is crucial for "npm install" to work correctly
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --omit=dev
 
 # Copy the rest of the application code
 COPY . .
